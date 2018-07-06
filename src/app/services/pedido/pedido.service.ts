@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { apiUrl } from '../URL/url'
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class PedidoService {
   registrarPedido( data ) {
     console.log('entró en registrarPedido');
 
-    return this.http.post(this.pathURL + this.registrarURL, data , {
+    return this.http.post(apiUrl + this.registrarURL, data , {
       headers: new HttpHeaders().set('Content-type', 'application/json')
     } );
   }
