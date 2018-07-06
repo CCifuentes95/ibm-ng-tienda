@@ -1,0 +1,101 @@
+<h2 class="card-title">
+
+  {{empresa.nombre}}</h2>
+<p class="card-text">{{empresa.descripcion}}</p>
+
+
+
+<h2>Relizar Pedido</h2>
+
+<div class="form-group row">
+  <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="apellido" class="col-sm-2 col-form-label">Apellido</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="apellido" [(ngModel)]="apellido">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="apellido" class="col-sm-2 col-form-label">Tipo de Documento</label>
+  <div class="col-sm-10">
+
+    <select class="custom-select" (change)="setTipoDoc($event.target.value)">
+      <option selected>Tipo de Documento...</option>
+      <option *ngFor="let tipo of tiposDocumentos " [value]="tipo.id">{{tipo.nombre}}</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label for="identificacion" class="col-sm-2 col-form-label">Identificacion</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="identificacion" [(ngModel)]="identificacion">
+  </div>
+</div>
+
+<div class="form-group row">
+  <label for="direccion" class="col-sm-2 col-form-label">Dirección</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="direccion" [(ngModel)]="direccion">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="direccion" class="col-sm-2 col-form-label">Fecha de Entrega</label>
+
+  <div class="input-group">
+    <input class="form-control" placeholder="yyyy-mm-dd" name="d2" #c2="ngModel" [(ngModel)]="fecha" ngbDatepicker #d2="ngbDatepicker">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" (click)="d2.toggle()" type="button">
+        <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+      </button>
+    </div>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Producto</th>
+      <th scope="col">Cantidad Actual</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Total</th>
+      <th scope="col">Opcion</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let detalle of detallesPedido ">
+      <td>
+        <select class="custom-select" (change)="setPrice($event.target.value, detalle)">
+          <option selected>Producto...</option>
+          <option *ngFor="let producto of productos " [value]="producto.id_Producto">{{producto.nombrePoducto}}</option>
+        </select>
+      </td>
+      <td>
+        <input type="number" class="form-control" id="cantidad" min="1" max="5" [(ngModel)]="detalle.cantidad">
+      </td>
+      <td> {{detalle.precio | currency }}</td>
+      <td> {{detalle.precio * detalle.cantidad | currency }}</td>
+      <td>
+          <button (click)="delete(detalle)" class="btn btn btn-danger">Borrar</button>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+<div align="center">
+  <button class="btn btn-success" (click)='addDetalle()'>Añadir</button>
+</div>
+<br>
+<div class="alert alert-info" role="alert">
+  El precio del transporte no está incluido y dependerá del lugar de entrega, este se deberá cancelar junto con el valor del
+  pedido en el momento de la entrega.
+</div>
+<br>
+<button class="btn btn-primary btn-lg btn-block" (click)='confirmar()'>Confirmar Pedido</button>
