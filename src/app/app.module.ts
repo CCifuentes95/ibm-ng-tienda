@@ -2,20 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateAdapter,  NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { PedidoComponent } from './pedido/pedido.component';
-import { ProductoComponent } from './producto/producto.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import { InventarioService } from './services/inventario/inventario.service';
-import { TipoDocumentoService } from './services/tipo_documento/tipo-documento.service';
+import { Ng2OrderModule } from 'ng2-order-pipe'; //importing the module
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
-import { NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
-import { PedidoService } from './services/pedido/pedido.service';
+//Components
+import { AppNavbarComponent, DashboardComponent, PedidoComponent, ProductoComponent } from './components/index.components';
+
+//Services
+import { InventarioService, TipoDocumentoService, PedidoService } from './services/index.services';
 
 @NgModule({
   declarations: [
@@ -30,6 +29,8 @@ import { PedidoService } from './services/pedido/pedido.service';
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    Ng2OrderModule,
+    NgxPaginationModule,
     FormsModule
 
   ],

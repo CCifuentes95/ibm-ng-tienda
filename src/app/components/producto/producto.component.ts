@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventarioService } from '../services/inventario/inventario.service';
-import { Producto } from '../models/producto';
+import { InventarioService } from '../../services/index.services';
+import { Producto } from '../../models/producto';
 
 
 @Component({
@@ -10,8 +10,17 @@ import { Producto } from '../models/producto';
 })
 export class ProductoComponent implements OnInit {
   productos: any[];
+  key: string = 'nombrePoducto'; //set default
+
+  p: number = 1;
+  reverse: boolean = false;
 
   constructor(private inventarioService: InventarioService) {
+  }
+
+  sort(key){
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 
   ngOnInit() {

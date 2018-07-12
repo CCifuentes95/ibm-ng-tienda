@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DetallePedido } from '../models/detalle-pedido';
-import { InventarioService } from '../services/inventario/inventario.service';
-import { TipoDocumentoService } from '../services/tipo_documento/tipo-documento.service';
-import { PedidoService } from '../services/pedido/pedido.service';
+import { DetallePedido } from '../../models/detalle-pedido';
+import { InventarioService, TipoDocumentoService, PedidoService } from '../../services/index.services';
 
 @Component({
   selector: 'app-pedido',
@@ -16,6 +14,7 @@ export class PedidoComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       descripcion: 'El servicio de Pedidos consta de un formulario que deberés llenar a continuación'
   };
+  calendarIcon = '../../../assets/calendar-icon.svg'
   detallesPedido: DetallePedido[];
   productos: any[];
   tiposDocumentos: any[];

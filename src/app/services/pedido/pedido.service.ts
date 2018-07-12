@@ -8,7 +8,6 @@ import { apiUrl } from '../URL/url'
 
 
 export class PedidoService {
-  private pathURL = 'http://localhost:8080/ibm-tienda/rest/controllers/';  // URL to web api
   private registrarURL = 'pedido/registrarPedido';  // URL to web api
 
   constructor(private http: HttpClient) { }

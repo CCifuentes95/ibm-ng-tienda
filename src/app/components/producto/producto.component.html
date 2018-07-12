@@ -1,0 +1,23 @@
+<h2>Productos</h2>
+<p class="card-text">Nuestra lista de Productos a tu disposición</p>
+
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th scope="col" (click)="sort('nombrePoducto')">Producto </th>
+      <th scope="col" (click)="sort('cantidad')">Cantidad Actual</th>
+      <th scope="col" (click)="sort('precioBase')">Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let producto of productos |  paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+      <td > {{producto.nombrePoducto}}</td>
+      <td > {{producto.cantidad}}</td>
+      <td > {{producto.precioBase | currency }}</td>
+    </tr>
+
+  </tbody>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
